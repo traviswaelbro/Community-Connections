@@ -1,0 +1,389 @@
+/**
+ * Author: 	Travis Waelbroeck
+ * Date: 		November 10, 2015
+ */
+
+
+/* Google Material Icons Font */
+@font-face {
+	font-family:'Material Icons';
+	font-style:normal;
+	font-weight:400;
+	src:url("fonts/MaterialIcons-Regular.eot");
+	src:
+		local("Material Icons"),
+		local("MaterialIcons-Regular"),
+		url("fonts/MaterialIcons-Regular.woff") format("woff"),
+		url("fonts/MaterialIcons-Regular.woff2") format("woff2"),
+		url("fonts/MaterialIcons-Regular.ttf") format("truetype")
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: url("fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Roboto Thin";
+	src: url("fonts/Roboto-Thin.ttf") format("truetype");
+}
+
+html, body {background-color: #85C6C2; margin: 0; padding: 0;}
+
+* {
+	font-family: "Roboto Thin", sans-serif;
+}
+
+form, input {
+	font-family: "Roboto", sans-serif;
+}
+
+form {
+	margin: 0 auto;
+	width: 315px;
+}
+
+.valign-parent {
+	display: table;
+}
+
+.valign-child {
+	display: table-cell;
+	vertical-align: middle;	
+}
+
+/**
+ * CSS Tooltip on Hover
+ * http://www.menucool.com/tooltip/css-tooltip
+ */
+a.tooltip {outline:none; }
+a.tooltip strong {line-height:30px;}
+a.tooltip:hover {text-decoration:none;} 
+a.tooltip span {
+  display:none; 
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  line-height:16px;
+  margin-top:-30px; 
+  padding: 10px;
+  z-index:10;
+}
+a.tooltip:hover span{
+  background: #FCF39D;
+  color: #2e2e2e;
+  display:inline; 
+  position:absolute; 
+}
+.callout {z-index:20;position:absolute;top:30px;border:0;left:-12px;}
+/* End CSS Tooltips */
+
+#people {
+	padding: 0;
+}
+
+#people li {
+	display: inline-block;
+	list-style-type: none;
+	margin: 3em 0;
+	text-align: center;
+	width: 24.5%;
+}
+
+#add, #reset, #delete {
+  background: #FCF39D;
+  border-radius: 100%;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.28);
+  line-height: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  position: fixed;
+}
+
+#add .mi, #reset .mi, #delete .mi {
+	color: #fff;
+}
+
+#add:hover .mi {
+	-webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  transition: 0.5s;
+}
+
+#delete:hover .mi {
+	-webkit-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+  transition: 0.75s;
+}
+
+#reset:hover .mi {
+	-webkit-transform: rotate(-360deg);
+  -ms-transform: rotate(-360deg);
+  transform: rotate(-360deg);
+  transition: 0.75s;
+}
+
+#add {
+	bottom: 3em;
+  right: 3em;
+  position: fixed;
+  text-shadow: 0px 0px 3px #333;
+}
+
+#delete {
+	background-color: #E53935;
+	bottom: 3em;
+  left: 3em;
+}
+
+#reset {
+	background-color: #F57C00;
+	bottom: 3em;
+  left: 3em;
+	margin-left: 66px;
+}
+
+#create, #createChild {
+	background-color: #FCF39D;
+}
+
+#close {
+	margin: 0 auto;
+}
+
+.material-icons, .mi {
+	font-family:'Material Icons';
+	font-weight:normal;
+	font-style:normal;
+	font-size:26px;
+	color: #2e2e2e;
+	display:inline-block;
+	width:1em;
+	height:1em;
+	line-height:1;
+	text-transform:none;
+	-webkit-font-smoothing:antialiased;
+	text-rendering:optimizeLegibility;
+	-moz-osx-font-smoothing:grayscale;
+	-webkit-font-feature-settings:'liga';
+	-moz-font-feature-settings:'liga';
+	font-feature-settings:'liga'
+	-webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+	transition: 0.5s;
+}
+
+/**
+ * Form Styling
+ */
+
+#overlay {
+	background: rgb(55,55,55);
+	background: rgba(55,55,55,0.75);
+	height: 100%;
+	left: 0;
+	opacity: 0;
+	position: fixed;
+	text-align: center;
+	top: 0;
+	visibility: hidden;
+	width: 100%;
+	transition: opacity 0.5s, visibility 0s 0.5s;
+}
+
+
+#message {
+	background: #333;
+	display: inline-block;
+	margin: 0 auto;
+	padding: 5em;
+	position: relative;
+	text-align: center;
+	top: 33%;
+	width: 25%;
+}
+
+#contents {
+	color: #FFF;
+	margin: 2em 0;
+	text-align: center;
+}
+
+#form-overlay, #child-overlay {
+	background: rgb(195,228,164);
+	background: rgba(195,228,164,0.9);
+	height: 100%;
+	left: 0;
+	opacity: 0;
+	position: fixed;
+	top: 0;
+	visibility: hidden;
+	width: 100%;
+	transition: opacity 0.5s, visibility 0s 0.5s;
+}
+
+#form-overlay.open, #overlay.open, #child-overlay.open {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.5s;
+}
+
+#form-overlay form {
+	perspective: 1200px;
+}
+
+#form-overlay form ul {
+	opacity: 0.4;
+	transform: translateY(-25%) rotateX(35deg);
+	transition: transform 0.5s, opacity 0.5s;
+}
+
+#form-overlay.open form ul {
+	opacity: 1;
+	transform: rotateX(0deg);
+}
+
+#form-overlay.close form ul {
+	transform: translateY(25%) rotateX(-35deg);
+}
+
+.group {
+	position: relative;
+	margin-bottom: 30px;
+}
+
+input, textarea, button {
+	background-color: #fff;
+	border: none;
+	border-bottom: 1px solid #757575;
+	display: block;
+	font-size: 18px;
+	padding: 10px 10px 10px 5px;
+	width: 300px;
+}
+
+input:focus, textarea:focus {
+	outline: none;
+}
+
+/* label styling */
+label, textarea {
+	color: #999;
+	left: 5px;
+	font-size: 18px;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	top: 10px;
+	transition: 0.2s ease all;
+}
+
+textarea {
+	height: 97px;
+	pointer-events: all;
+}
+
+textarea:focus {
+	border-bottom: #5264AE 2px solid;
+}
+
+input:focus ~ label, input:valid ~ label,
+textarea:focus ~ label, textarea:valid ~ label {
+	color: #5264AE;
+	font-size: 14px;
+	top: -20px;
+}
+
+.btn {
+	cursor: pointer;
+	text-align: center;
+}
+
+/* input bottom bars */
+.bar {
+	display: block;
+	position: relative;
+	width: 315px;
+}
+
+.bar:before, .bar:after {
+	background: #5264AE;
+	bottom: 1px;
+	content: '';
+	height: 2px;
+	position: absolute;
+	transition: 0.2s ease all;
+	width: 0;
+}
+
+.bar:before {
+	left: 50%;
+}
+
+.bar:after {
+	right: 50%;
+}
+
+input:focus ~ .bar:before, input:focus ~ .bar:after,
+textarea:focus ~ .bar:before, textarea:focus ~ .bar:after {
+	width: 50%;
+}
+
+/* highlighting */
+.highlight {
+	height: 60%;
+	left: 0;
+	pointer-events: none;
+	position: absolute;
+	opacity: 0.5;
+	top: 25%;
+	width: 100px;
+}
+
+/* active state */
+input:focus ~ .highlight, textarea:focus ~ .highlight {
+	animation:inputHighlighter 0.3s ease;
+}
+
+input:focus ~ label, input:valid ~ label,
+textarea:focus ~ label, textarea:valid ~ label {
+	color: #5254AE;
+	font-size: 14px;
+	top: -20px;
+}
+
+/* animation */
+@keyframes inputHighlighter {
+	from 	{ background: #5264AE; }
+	to 		{ background: transparent; width: 0; }
+}
+
+/**
+ * End Form Styling
+ */
+
+@media all and (max-width: 770px) {
+	#people li {
+		width: 33%;
+	}
+}
+
+@media all and (max-width: 380px) {
+	#people li {
+		width: 100%;
+	}
+	#add {
+		bottom: 1em;
+		right: 1em;
+	}
+	#delete {
+		bottom: 1em;
+		left: 1em;
+	}
+	#reset {
+		bottom: 1em;
+		left: 1em;
+	}
+}
